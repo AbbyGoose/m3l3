@@ -59,7 +59,7 @@ class DB_Manager:
 
 
     def insert_project(self, data):
-        sql = "" # Запиши сюда правильный SQL запрос
+        sql = "INSERT INTO projects (user_id, project_name, description, url, status_id) values(?, ?, ?, ?, ?)" # Запиши сюда правильный SQL запрос
         self.__executemany(sql, data)
 
 
@@ -111,7 +111,7 @@ WHERE project_name=? AND user_id=?
 
 
     def update_projects(self, param, data):
-        sql = "UPDATE projects SET {param} = ? WHERE project_name = ? AND user_id = ?" # Запиши сюда правильный SQL запрос
+        sql = f"UPDATE projects SET {param} = ? WHERE project_name = ? AND user_id = ?" # Запиши сюда правильный SQL запрос
         self.__executemany(sql, [data]) 
 
 
@@ -125,5 +125,8 @@ WHERE project_name=? AND user_id=?
 
 if __name__ == '__main__':
     manager = DB_Manager(database)
-    manager.default_insert()
+    #data = [('сигма', 'Сайт портфолио', 1)]
+    #manager.insert_project(data)
+    #print(manager.get_project_info(1, 'Сайт портфолио'))
+    #manager.update_projects('description', ('сигма', 'Сайт портфолио', 1))
     
